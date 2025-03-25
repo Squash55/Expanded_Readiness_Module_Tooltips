@@ -37,6 +37,9 @@ gb = GridOptionsBuilder.from_dataframe(df)
 for col in df.columns:
     gb.configure_column(col, headerTooltip=tooltips.get(col, ""))
 
+# ✅ Enable hover tooltips
+gb.configure_grid_options(enableBrowserTooltips=True)
+
 grid_options = gb.build()
 
 AgGrid(df, gridOptions=grid_options, height=500, fit_columns_on_grid_load=True)
