@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
@@ -14,7 +13,7 @@ df = load_data()
 st.title("📋 Expanded Readiness Intelligence with Hover Tooltips (Artificial data)")
 st.markdown("Hover over column headers to see smart definitions.")
 
-# Column tooltips
+# Define smart tooltips for each column
 tooltips = {
     "Base": "Name of the base",
     "Country": "Country location of base",
@@ -37,39 +36,38 @@ gb = GridOptionsBuilder.from_dataframe(df)
 for col in df.columns:
     gb.configure_column(col, headerTooltip=tooltips.get(col, ""))
 
-# ✅ Enable hover tooltips
+# ✅ Enable tooltips on hover
 gb.configure_grid_options(enableBrowserTooltips=True)
 
 grid_options = gb.build()
 
-AgGrid(df, gridOptions=grid_options, height=500, fit_columns_on_grid_load=True)
+# Render the interactive AgGrid table
+AgGrid(
+    df,
+    gridOptions=grid_options,
+    height=500,
+    fit_columns_on_grid_load=True
+)
 
-# Smart AI-powered problem framing
+# Smart AI-generated insight
 st.subheader("🧠 Adaptive Problem Statement (AI-Assisted)")
 
 st.markdown("""
 **Problem Context:**  
-Several U.S. and allied Air Force bases show a range of challenges in mission complexity, logistics readiness, and equipment availability.  
-Notably, multiple bases present high maintenance burdens and personnel gaps, signaling a need for targeted interventions.
+Several U.S. and allied Air Force bases show challenges in mission complexity, logistics readiness, and equipment availability.  
+Many exhibit high maintenance burdens and personnel gaps, suggesting urgent needs.
 
-**Detected Issues:**  
+**Detected Patterns:**  
 - High mission complexity often aligns with low cyber resilience and flight ops readiness  
-- Equipment availability below 60 correlates with poor logistics readiness and medical scores  
-- Bases in remote areas tend to have higher fuel supply issues and training gaps
-
-**Impact:**  
-These patterns reduce operational flexibility and threaten mission success in time-sensitive scenarios. Delayed logistics or medical support can severely degrade deployment readiness.
+- Equipment availability below 60 often co-occurs with poor logistics and medical scores  
+- Bases in remote areas show higher fuel supply risks and training gaps
 
 **Potential Solutions:**  
-- 📦 Deploy mobile logistics teams to bases with low logistics and fuel scores  
-- 🧑‍🏫 Launch remote or AI-enabled training modules for undertrained personnel  
-- 🛠️ Create a predictive maintenance model to address high maintenance burden bases  
-- 🧬 Use AI to identify bases with latent risk combinations (e.g., high complexity + low cyber + high personnel gaps)  
-- 🛰️ Improve data-driven prioritization of resource allocation across regions
+- 📦 Deploy mobile logistics support to underperforming areas  
+- 🧠 Use AI-enabled training tools for low-proficiency bases  
+- 🛠 Create predictive maintenance dashboards  
+- 📍 Prioritize bases with complex mission + high personnel gaps + low cyber resilience
 
 **Next Steps:**  
-This dashboard should feed into a command-level readiness review and support continuous improvement initiatives using AI-CII principles.
+Feed these insights into an AI-CII powered readiness review with optimization interventions.
 """)
-
-st.markdown("---")
-st.markdown("Powered by simulated readiness analytics and adaptive AI framing.")
